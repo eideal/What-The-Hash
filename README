@@ -1,0 +1,29 @@
+#########
+README for WhatTheHash - Twitter Hashtag Recommender
+Insight 2016B
+#########
+
+update_database.py: Extracts last 8 hours of tweets on Twitter from the Twitter API and dumps that into my PostgreSQL database
+
+group_tweets.py: Cleans last 8 hours of tweets (removes unicode chars, punctuation, links, stopwords and lowercases). Finds all hashtags used in the last 8 hours of tweets and groups the words associated with each one
+
+run.py: This script runs an infinite loop that calls update_database and group_tweets. The output of group_tweets is pickled. The script runs every 1 hour.
+
+generate_corpus.py: Extracts 50 million recent tweets and dumps a pickle of the text
+
+clean_corpus.py: Loads the corpous pickle, cleans the tweet text (lowercases, removes unicode, removes punctuation, removes links) and writes each tweet word, separated by spaces. Each tweet is wrtten to the corpusfile.txt file on a separate line.
+
+train_word2vec.py: Parses the corpusfile.txt file, trains the word2vec model, and dumps it to disk - my_word2vec_model
+
+validation_word2vec.py: The validation* files are for my validation work and are somewhat copies of code for the main datta flow. validation_word2vec.py extracts 50 million recent tweets, cleans them, and dumps them to validation_corpusfile.txt.
+
+validation_train.py: Parses the tweets in validation_corpusfile.txt, trains the word2vec model and saves it to disk - validation_word2vec_model
+
+validation_run.py: Runs the main algorithm for the validation branch. Extracts recent tweets written in the last 0.1 hours, cleans the text, selects tweets containing only one hashtag, removes words from tweets that are not in the word2vec model's vocabulary, remove and save the hashtag used in the tweet, and append to a validation list. Take the first 500 tweets in that validation list and compute the similarity score for each of those tweets with each of the hashtags from the last 8 hours. Sort the hashtags by similarity score and dump a pickle of the validation list, which looks like
+['tweet words',[#hashtag],[('#toprecommendedhashtag', 0.9), ('#secondrecommendation', 0.87), ....]]. This is called validation2.pickle.
+
+validation_run_editalgo.py: Same as validation_run.py except I made a change to the algorithm. Dumps a pickle called validation3_editalgo.pickle.
+
+validation_plot.py: Take the validation pickle and plots e.g. the word2vec model similarity between the top recommended hashtag and the actual hashtag used by the Tweeter. Also plots the rank of the actual hashtag in my sorted recommendation list, i.e. rank 1 means my top recommended hashtag = actual hashtag they used on the tweet.
+
+views.py: The live functions being used in my Flask web application. The live algorithm is defined in the tweet_output function. These functions called render_template, which grabs the appropriate Bootstrap template and displays it locally.

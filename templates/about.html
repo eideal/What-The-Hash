@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+<li><a href="input">Home</a></li>
+<li class="active"><a href="#">About</a></li>
+<li><a href="contact">Contact</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="starter-template">
+    <h1>About</h1>
+    <p class="lead">Welcome to #WhatTheHash, a Twitter hashtag recommender! Enter in your tweet and get back real-time hashtags on Twitter. Click on the hashtag to access its page on Twitter. The relative popularity of the hashtag (out of 5 stars) indicate how trending it is compared to all other hashtags. Lastly, the similarity score indicates how relevant my algorithm believes the hashtag is to your content.</p>
+    <p class="lead">Here is the link to my demo on SlideShare: <a href=http://www.slideshare.net/EmmaIdeal/what-the-hash-63423879 target="_blank">#WhatTheHash</a></p>
+  </div>
+</div>
+{% endblock %}

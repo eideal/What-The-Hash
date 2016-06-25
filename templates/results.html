@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block results %}
+<div class="container">
+  <div class="starter-template" style="margin-bottom:10px;">
+    <p class="lead" style="margin-bottom:0px;">Your tweet was:</p>
+    <p class="lead"> <font color='darkblue'><strong>{{ user_input }}</strong></font> </p>
+  </div>
+  <div class="wrapper" style="margin-top:0px;">
+    <!--<h3 style="margin-bottom:20px;">Recommended Hashtags:</h3>-->
+  </div>
+  <table class="table table-hover" style="width:1000px; margin-left:auto; margin-right:auto; margin-top:0px;">
+  <tr><th>Hashtag</th><th>Relative Popularity</th><th>Similarity Score</th></tr>
+  {% for hashtag in hashtags %}
+  <tr><td><a href={{ 'https://www.twitter.com/hashtag/{0}'.format(hashtag[0][1:]) }} target="_blank"> {{ hashtag[0] }}</a></td>
+    <td>
+      {% for i in range(1, hashtag[1][1]+1) %}
+        <img src={{ url_for('static', filename='star.jpg') }}>
+      {% endfor %}
+    </td>
+    <td>{{ '{0:.3f}'.format(hashtag[1][0]) }}</td></tr>
+  {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+body {
+  padding-top: 50px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 1800px 1065px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.theme-dropdown .dropdown-menu {
+ position: static;
+ display: block;
+ margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+ margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+ width: auto;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.form-group{
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+}
+
+th {
+    background-color: rgb(255,255,255);
+    text-align: center;
+    font-size: 20pt;
+}
+
+td {
+    background-color: rgb(255,255,255);
+    text-align: center;
+    font-size: 20pt;
+}
